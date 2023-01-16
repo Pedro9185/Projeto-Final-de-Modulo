@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meus Recados</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+<header>
+  <button onclick="">sair</button>
+</header>
+<body>
+  <main>
+    <section class="section-meus-recados">
+      <div class="divMeusRecados">
+        <h1>MEUS RECADOS</h1>
+
+
+        <form id="formularioRecados">
+          <input class="inputMeusRecados" name="descricao" type="text" id="descricao-id" placeholder="Descrição">
+
+          <input class="inputMeusRecados" name="detalhamento" type="text" id="detalhamento-id" placeholder="Detalhamento">
+
+          <input id="inputSalvar" type="submit" value="Salvar" onclick="salvarRecados(event)">
+        </form>
+
+
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Descrição</th>
+              <th>Detalhamento</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody id="meus-recados">
+
+          </tbody>
+        </table>
+
+    </section>
+
+  </main>
+  <script src="./meus-recados.js"></script>
+</body>
+
+</html>
