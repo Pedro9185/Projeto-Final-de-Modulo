@@ -1,97 +1,91 @@
-// 1º capiturar elemento da tabela => tbody
-// const usuarioLogado = buscarDadosDoLocalStorage('usuarioLogado')
+const usuarioLogado = buscarDadosLocalStorage('usuarioLogado')
 
-const formularioRecados = document.
-    getElementById('formularioRecados')
+document.addEventListener('DOMContentLoaded', () => {
+    if(!usuarioLogado.nome){
+        window.location.href = 'entrar.html'
+    }else{
+        mostrarRecados()
+    }
+})
+
+const listaRecados = usuarioLogado.recados 
+
+const formularioHTML = document.getElementById('formularioRecados') 
 
 const tBody = document.getElementById('meus-recados')
 
+formularioHTML.addEventListener('submit', (evento) => {
 
-function salvarRecados(event) {
-    event.preventDefault()
+    evento.preventDefault()
 
-    const recados = {
-        descricao: formularioRecados.descricao.value,
-        detalhamento: formularioRecados.detalhamento.value
+    const descricao = document.getElementById('descricao-id').value
+    const detalhamento = document.getElementById('detalhamento-id').value
+
+    const novoRecado = {
+        descricao: descricao,
+        detalhamento: detalhamento
     }
 
-    const valorEmJson = JSON.stringify(recados)
-    const valorConvertidoEmJson = JSON.parse(valorEmJson)
+    listaRecados.push(novoRecado)
 
-    let listaRecados = JSON.parse(localStorage.getItem('recadosSalvos'))
+    salvarRecados()
 
-    if (!listaRecados) {
-        listaRecados = []
-    }
+    mostrarRecados()
 
-    listaRecados.push(recados)
+    formularioHTML.reset()
 
-    localStorage.setItem('recadosSalvos', JSON.stringify(listaRecados))
-
-    formularioRecados.reset()
-    mostrarRecadosNoHtml()
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const usuarioLogado = localStorage.getItem('usuarioLogado')
-
-    if(!usuarioLogado) {
-        window.location.href = './entrar.html'
-    } else {
-        montarRegistrosNoHTML()
-    } 
 })
 
 
-function mostrarRecadosNoHtml() {
+
+
+function salvarRecados(){
+    const listaUsuario = buscarDadosLocalStorage('usuarios')
+    
+    const acharUsuario = listaUsuario.findIndex((valor) => valor.nome === usuarioLogado.nome)
+ 
+    listaUsuario[acharUsuario].recados = listaRecados
+ 
+    guardarLocalStorage('usuarios', listaUsuario)
+
+}
+
+
+function mostrarRecados(){
     tBody.innerHTML = ''
-    const lista_recados = JSON.parse(localStorage.getItem('recadosSalvos'))
 
-    lista_recados.forEach((valor, index) => {
-
+    listaRecados.forEach((valor, index) => {
         tBody.innerHTML += `
-        
-        
-        <tr id="${index}">
+        <tr id='${index}'>
         <td>${index + 1}</td>
         <td>${valor.descricao}</td>
         <td>${valor.detalhamento}</td>
-
         <td>
-        <button class="botaoApagar"  onclick="apagar(${index})">Apagar</button>
+            <button onclick="apagar(${index})">Apagar</button>
+            <button onclick="editar(${index})">Editar</button>
         </td>
-
-        <td>
-        <button onclick="">Editar</button>
-        </td>
-        
-        </tr>
-        
-        
-        `
+    </tr>`
     })
 }
-function apagar(indice) {
 
-    // listaRecados.splice(indice)
 
-    // armazenarDadosUsuarioLocalStorage('recadosSalvos')
 
-    let trRemover = document.getElementById(indice)
-    trRemover.remove()
-}
 
-function armazenarDadosUsuarioLocalStorage(chave, valor) {
+function guardarLocalStorage(chave, valor){
     const valorJSON = JSON.stringify(valor)
+
     localStorage.setItem(chave, valorJSON)
 }
+function buscarDadosLocalStorage(chave){
 
-function buscarDadosDoLocalStorage(chave) {
-    const dadosJSON = localStorage.getItem(chave)
-    if (dadosJSON) {
-        const dadosConvertidos = JSON.parse(dadosJSON)
-        return dadosConvertidos;
-    } else {
+    const dadoJSON = localStorage.getItem(chave)
+
+    if(dadoJSON){
+    const dadosConvertidos = JSON.parse(dadoJSON)
+        return dadosConvertidos
+    }
+    else{
         return {}
     }
 }
+

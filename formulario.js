@@ -42,7 +42,7 @@ cadastroHTML.addEventListener('submit', (ev) => {
 
     if (existe) {
         alert('Este nome de usuario já existe')
-        listaUsuarios = []
+        
         return;
     }
 

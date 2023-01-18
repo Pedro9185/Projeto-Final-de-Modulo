@@ -16,7 +16,7 @@ formulario.addEventListener('submit', (ev) => {
     alert('Usuario ou senha estão incorretos ou não existem')
     return;
   }else{
-    armazenarDadosUsuarioLocalStorage('usuarioLogado',usuarioEncontrado.nome)
+    armazenarDadosUsuarioLocalStorage('usuarioLogado',usuarioEncontrado)
     window.location.href = './meus-recados.html'
   }
 
