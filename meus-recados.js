@@ -1,16 +1,16 @@
+const meuModal = new bootstrap.Modal('#exampleModal') 
 const usuarioLogado = buscarDadosLocalStorage('usuarioLogado')
-
 document.addEventListener('DOMContentLoaded', () => {
-    if(!usuarioLogado.nome){
+    if (!usuarioLogado.nome) {
         window.location.href = 'entrar.html'
-    }else{
+    } else {
         mostrarRecados()
     }
 })
 
-const listaRecados = usuarioLogado.recados 
+const listaRecados = usuarioLogado.recados
 
-const formularioHTML = document.getElementById('formularioRecados') 
+const formularioHTML = document.getElementById('formularioRecados')
 
 const tBody = document.getElementById('meus-recados')
 
@@ -39,19 +39,22 @@ formularioHTML.addEventListener('submit', (evento) => {
 
 
 
-function salvarRecados(){
+function salvarRecados() {
     const listaUsuario = buscarDadosLocalStorage('usuarios')
-    
+
     const acharUsuario = listaUsuario.findIndex((valor) => valor.nome === usuarioLogado.nome)
- 
+
     listaUsuario[acharUsuario].recados = listaRecados
- 
+
     guardarLocalStorage('usuarios', listaUsuario)
 
 }
 
 
-function mostrarRecados(){
+
+
+
+function mostrarRecados() {
     tBody.innerHTML = ''
 
     listaRecados.forEach((valor, index) => {
@@ -61,30 +64,80 @@ function mostrarRecados(){
         <td>${valor.descricao}</td>
         <td>${valor.detalhamento}</td>
         <td>
-            <button onclick="apagar(${index})">Apagar</button>
-            <button onclick="editar(${index})">Editar</button>
+            <button class="botaoApagar" onclick="apagar(${index})">Apagar</button>
+            <button type="button" class="botaoEditar" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="prepararEdicao(${index})">Editar</button>
         </td>
     </tr>`
     })
 }
 
+function prepararEdicao(indice){
+
+const inputEditarDescricao = document.getElementById('editarDescricao')
+const inputEditarDetalhamento =  document.getElementById('editarDetalhamento')
+
+inputEditarDescricao.value = usuarioLogado.recados[indice].descricao
+inputEditarDetalhamento.value = usuarioLogado.recados[indice].detalhamento
+
+const formularioEditarRecados = document.getElementById('formularioEditarRecados')
+
+formularioEditarRecados.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    usuarioLogado.recados[indice].descricao = inputEditarDescricao.value
+    usuarioLogado.recados[indice].detalhamento = inputEditarDetalhamento.value
+
+    guardarLocalStorage('usuarioLogado', usuarioLogado)
+
+    mostrarRecados()
+
+    meuModal.hide()
+
+})
+}
+
+function apagar(indice) {
+    usuarioLogado.recados.splice(indice, 1)
+    console.log(usuarioLogado);
+
+    let tr = document.getElementById(indice)
+    tr.remove()
+
+    guardarLocalStorage('usuarioLogado', usuarioLogado)
+    
+    salvarRecados()
+    
+    mostrarRecados()
+    
+}
 
 
 
-function guardarLocalStorage(chave, valor){
+function sair() {
+    salvarRecados()
+     localStorage.removeItem('usuarioLogado')
+
+    // guardarLocalStorage('usuarioLogado', usuarioDeslogado)
+
+    window.location.href = './entrar.html'
+}
+
+
+function guardarLocalStorage(chave, valor) {
     const valorJSON = JSON.stringify(valor)
 
     localStorage.setItem(chave, valorJSON)
 }
-function buscarDadosLocalStorage(chave){
+
+function buscarDadosLocalStorage(chave) {
 
     const dadoJSON = localStorage.getItem(chave)
 
-    if(dadoJSON){
-    const dadosConvertidos = JSON.parse(dadoJSON)
+    if (dadoJSON) {
+        const dadosConvertidos = JSON.parse(dadoJSON)
         return dadosConvertidos
     }
-    else{
+    else {
         return {}
     }
 }

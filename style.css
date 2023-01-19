@@ -10,7 +10,7 @@ body {
     background-image: url(./images/background.jpg);
     background-repeat: no-repeat;
     background-size: 100vw 100vh;
-
+    overflow-y: hidden;
 }
 
 
@@ -106,7 +106,7 @@ td {
 }
 
 tbody>tr:hover {
-    background-color: #D6EEEE;
+    background-color: #a3a6a6;
 }
 
 .inputSalvar {
@@ -127,8 +127,20 @@ tbody>tr:hover {
     margin-left: 200px;
 }
 .botaoApagar{
-    background-color: red;
-    color: black;
-    border-radius: 30px;
-    padding: 3px ;
+    background-color: rgba(129, 126, 121, 0.556) !important;
+    color: black !important;
+    font-size: 13px !important ;
+    
 }
+.botaoApagar:hover{
+    background-color: red !important;
+}
+
+.botaoEditar{
+    background-color: rgba(129, 126, 121, 0.556) !important;
+    font-size: 13px !important;
+}
+.botaoEditar:hover{
+    background-color: rgb(14, 179, 14) !important ;
+}
+

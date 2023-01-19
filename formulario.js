@@ -50,9 +50,9 @@ cadastroHTML.addEventListener('submit', (ev) => {
 
     armazenarDadosUsuarioLocalStorage('usuarios', listaUsuarios)
 
-    alert('Usuario cadastrado com Sucesso')
-    cadastroHTML.reset()
 
+    cadastroHTML.reset()
+    alert('Usuario cadastrado com Sucesso')
 })
 
 function armazenarDadosUsuarioLocalStorage(chave, valor) {
