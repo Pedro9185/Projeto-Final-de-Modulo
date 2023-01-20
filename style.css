@@ -130,6 +130,7 @@ tbody>tr:hover {
     background-color: rgba(129, 126, 121, 0.556) !important;
     color: black !important;
     font-size: 13px !important ;
+    border-radius: 10px;
     
 }
 .botaoApagar:hover{
@@ -139,8 +140,17 @@ tbody>tr:hover {
 .botaoEditar{
     background-color: rgba(129, 126, 121, 0.556) !important;
     font-size: 13px !important;
+    border-radius: 10px;
 }
 .botaoEditar:hover{
     background-color: rgb(14, 179, 14) !important ;
 }
 
+.botãoSair:hover{
+background-color: rgba(229, 17, 17, 0.868);
+color: white;
+
+}
+.botãoSair{
+    border-radius: 10px;
+}
