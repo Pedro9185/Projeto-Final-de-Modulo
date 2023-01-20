@@ -71,13 +71,14 @@ button {
     padding: 10px;
 }
 
-.botão-entrar{
+.botão-entrar {
     border-radius: 5px;
     background-color: rgba(160, 166, 166, 0.615);
     margin: 5px 10px;
     padding: 10px;
 }
-.botão-entrar:hover{
+
+.botão-entrar:hover {
     background-color: #5dc585;
 }
 
@@ -126,31 +127,35 @@ tbody>tr:hover {
     display: inline-block;
     margin-left: 200px;
 }
-.botaoApagar{
+
+.botaoApagar {
     background-color: rgba(129, 126, 121, 0.556) !important;
     color: black !important;
-    font-size: 13px !important ;
+    font-size: 13px !important;
     border-radius: 10px;
-    
+
 }
-.botaoApagar:hover{
+
+.botaoApagar:hover {
     background-color: red !important;
 }
 
-.botaoEditar{
+.botaoEditar {
     background-color: rgba(129, 126, 121, 0.556) !important;
     font-size: 13px !important;
     border-radius: 10px;
 }
-.botaoEditar:hover{
-    background-color: rgb(14, 179, 14) !important ;
+
+.botaoEditar:hover {
+    background-color: rgb(14, 179, 14) !important;
 }
 
-.botãoSair:hover{
-background-color: rgba(229, 17, 17, 0.868);
-color: white;
+.botãoSair:hover {
+    background-color: rgba(229, 17, 17, 0.868);
+    color: white;
 
 }
-.botãoSair{
+
+.botãoSair {
     border-radius: 10px;
 }
