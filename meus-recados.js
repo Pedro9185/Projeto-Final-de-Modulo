@@ -1,4 +1,4 @@
-const meuModal = new bootstrap.Modal('#exampleModal') 
+const meuModal = new bootstrap.Modal('#exampleModal')
 const usuarioLogado = buscarDadosLocalStorage('usuarioLogado')
 document.addEventListener('DOMContentLoaded', () => {
     if (!usuarioLogado.nome) {
@@ -71,29 +71,29 @@ function mostrarRecados() {
     })
 }
 
-function prepararEdicao(indice){
+function prepararEdicao(indice) {
 
-const inputEditarDescricao = document.getElementById('editarDescricao')
-const inputEditarDetalhamento =  document.getElementById('editarDetalhamento')
+    const inputEditarDescricao = document.getElementById('editarDescricao')
+    const inputEditarDetalhamento = document.getElementById('editarDetalhamento')
 
-inputEditarDescricao.value = usuarioLogado.recados[indice].descricao
-inputEditarDetalhamento.value = usuarioLogado.recados[indice].detalhamento
+    inputEditarDescricao.value = usuarioLogado.recados[indice].descricao
+    inputEditarDetalhamento.value = usuarioLogado.recados[indice].detalhamento
 
-const formularioEditarRecados = document.getElementById('formularioEditarRecados')
+    const formularioEditarRecados = document.getElementById('formularioEditarRecados')
 
-formularioEditarRecados.addEventListener('submit', (event) => {
-    event.preventDefault()
+    formularioEditarRecados.addEventListener('submit', (event) => {
+        event.preventDefault()
 
-    usuarioLogado.recados[indice].descricao = inputEditarDescricao.value
-    usuarioLogado.recados[indice].detalhamento = inputEditarDetalhamento.value
+        usuarioLogado.recados[indice].descricao = inputEditarDescricao.value
+        usuarioLogado.recados[indice].detalhamento = inputEditarDetalhamento.value
 
-    guardarLocalStorage('usuarioLogado', usuarioLogado)
+        guardarLocalStorage('usuarioLogado', usuarioLogado)
 
-    mostrarRecados()
+        mostrarRecados()
 
-    meuModal.hide()
+        meuModal.hide()
 
-})
+    })
 }
 
 function apagar(indice) {
@@ -104,18 +104,18 @@ function apagar(indice) {
     tr.remove()
 
     guardarLocalStorage('usuarioLogado', usuarioLogado)
-    
+
     salvarRecados()
-    
+
     mostrarRecados()
-    
+
 }
 
 
 
 function sair() {
     salvarRecados()
-     localStorage.removeItem('usuarioLogado')
+    localStorage.removeItem('usuarioLogado')
 
     // guardarLocalStorage('usuarioLogado', usuarioDeslogado)
 
