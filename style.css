@@ -2,7 +2,13 @@
     margin: 0;
     padding: 0;
 }
-
+html{
+    color: #fff;
+}
+a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}   
 body {
     width: 100vw;
     height: 100vh;
@@ -22,9 +28,10 @@ body {
     left: calc(50% - 15vw);
     top: calc(50% - 45%);
     background-color: transparent;
-    background-color: #91908e45;
+    background-color: #35343380;
     border-radius: 0px 20px 0px 20px;
-
+    display: flex;
+    align-items: center;
 }
 
 .section-meus-recados {
@@ -45,14 +52,9 @@ body {
 }
 
 .formulario {
-    margin-top: 200px;
     text-align: center;
-
-}
-
-
-h1 {
-    color: rgb(81, 76, 76);
+    width: 400px;
+    height: 400px;
 }
 
 
